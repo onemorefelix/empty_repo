@@ -1,0 +1,17 @@
+name: Test connect to repository and docker
+
+on: push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to dev
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: |
+                       ls
+                       docker ps
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password:  ${{ secrets.PASSWORD_HOST }}
