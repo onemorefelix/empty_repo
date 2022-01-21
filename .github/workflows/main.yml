@@ -12,8 +12,9 @@ jobs:
           command: |
                        ls
                        cd /mnt/odoo_14/addons/estim
-                       RESULT=$(git log -m -1 --name-only --pretty="format:" HEAD | cut -d'/' -f1 | grep . | uniq | paste -sd "," -)
-                       echo $RESULT
+                       modules=$(git log -m -1 --name-only --pretty="format:" HEAD | cut -d'/' -f1 | grep . | uniq | paste -sd "," -)
+                       replace_git=${modules/.github/""}
+                       echo $replace_git
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password:  ${{ secrets.PASSWORD_HOST }}
