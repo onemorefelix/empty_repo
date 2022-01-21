@@ -11,7 +11,9 @@ jobs:
         with:
           command: |
                        ls
-                       docker ps
+                       cd /mnt/odoo_14/addons/estim
+                       RESULT=$(git log -m -1 --name-only --pretty="format:" HEAD | cut -d'/' -f1 | grep . | uniq | paste -sd "," -)
+                       echo $RESULT
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password:  ${{ secrets.PASSWORD_HOST }}
