@@ -15,7 +15,7 @@ jobs:
                        modules=$(git log -m -1 --name-only --pretty="format:" HEAD | cut -d'/' -f1 | grep . | uniq | paste -sd "," -)
                        list_update=${modules/.github,/""}
                        docker ps
-                       docker exec -u root -t -i odoo_14 /bin/bash
+                       docker exec -it odoo_14 bash
                        ls
                        docker ps
                        echo "test1"
