@@ -16,12 +16,9 @@ jobs:
                        list_update=${modules/.github,/""}
                        docker ps
                        docker exec -u root -t -i odoo_14 /bin/bash
-                       docker ps
                        ls
-                       echo "test"
-                       result=$(/usr/bin/python3 /usr/bin/odoo -c /etc/odoo/odoo.conf -d odoo_14 -u $list_update --stop-after-init)
-                       echo $result
-                       echo "test2"
+                       docker ps
+                       echo "test1"
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password:  ${{ secrets.PASSWORD_HOST }}
