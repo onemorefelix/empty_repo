@@ -13,8 +13,9 @@ jobs:
                        ls
                        cd /mnt/odoo_14/addons/estim
                        modules=$(git log -m -1 --name-only --pretty="format:" HEAD | cut -d'/' -f1 | grep . | uniq | paste -sd "," -)
-                       replace_git=${modules/.github/""}
-                       echo $replace_git
+                       list_update=${modules/.github,/""}
+                       docker exec -u root -t -i odoo_14 /bin/bash
+                       /usr/bin/python3 /usr/bin/odoo -c /etc/odoo/odoo.conf -d odoo_14 -u list_update --stop-after-init
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password:  ${{ secrets.PASSWORD_HOST }}
